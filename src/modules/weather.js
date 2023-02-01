@@ -1,8 +1,8 @@
 import { errorHandler } from './errorHandler.js'
 
 /**
- *  Select from OpenWeather API response only usefull weather data.
- * @returns {Object} data - Data usefull for web app
+ *  Select from OpenWeather API response only useful weather data.
+ * @returns {Object} data
  */
 export async function weatherData() {
     const safeGetWeather = errorHandler(getWeather)
@@ -19,7 +19,7 @@ export async function weatherData() {
 /**
  * Query OpenWether API for all data available about a location.
  * @param {'standard'|'metric'|'imperial'}  units.
- * @returns {Object} - All weather data for that location.
+ * @returns {Object} 
  */
 async function getWeather(units) {
     const safeGetCoord = errorHandler(getCoord)
@@ -36,7 +36,7 @@ async function getWeather(units) {
 /**
  * Query geolocation API for getting the coordinate for OpenWeather API request.
  * @param {String} location - City name.
- * @returns {Object} - Geo data for that location.
+ * @returns {Object}
  */
 async function getCoord(location) {
     const response = await fetch(
