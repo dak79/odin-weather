@@ -13,7 +13,7 @@ const config = {
     output: {
         path: path.resolve(__dirname, 'dist')
     },
-  target: 'web',
+    target: 'web',
     devServer: {
         open: true,
         host: 'localhost',
@@ -22,7 +22,7 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.html'
+            template: './src/index.html'
         }),
 
         new MiniCssExtractPlugin()
