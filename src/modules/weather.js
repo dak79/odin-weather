@@ -1,14 +1,17 @@
 import { geolocation } from './geoloc.js'
+import { errorHandler } from './errorHandler.js'
 
 export async function weatherCast(units) {
-    let city = await geolocation('london')
+    const safeGeolocation = errorHandler(geolocation)
+    const city = await safeGeolocation('lhjkdsfhfsdkjlhfdskjdfshjkondon')
+
     console.log(city)
 
-    let response = await fetch(
+    const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${city[0].lat}&lon=${city[0].lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
     )
 
-    let weather = await response.json()
+    const weather = await response.json()
 
     console.log(weather)
 }
