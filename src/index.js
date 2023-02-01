@@ -1,6 +1,6 @@
 import './styles/main.css'
-import { weatherCast } from './modules/weather.js'
+import { getWeather } from './modules/weather.js'
 import { errorHandler } from './modules/errorHandler.js'
 
-const safeWeatherCast = errorHandler(weatherCast)
-safeWeatherCast('metric')
+const safeGetWeather = errorHandler(getWeather)
+safeGetWeather('metric')
