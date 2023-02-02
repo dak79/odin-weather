@@ -1,9 +1,7 @@
 import './styles/main.css'
-import { weatherData } from './modules/weather.js'
-import { displayForm } from './modules/formUi.js'
 import { formListener } from './modules/form.js'
+import { renderPage } from './modules/mainPageUi.js'
 
-displayForm()
-
+renderPage()
 formListener()
 

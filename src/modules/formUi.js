@@ -1,8 +1,7 @@
 import { appendChildren, setAttributes } from './helpers.js'
 
-export function displayForm() {
-    const hook = document.querySelector('#hook')
-    const div = document.createElement('div')
+export function displayForm(hook) {
+  
     const container = document.createElement('div')
     container.setAttribute('id', 'search-container')
 
@@ -24,7 +23,6 @@ export function displayForm() {
     })
     searchButton.textContent = 'Search'
 
-    hook.appendChild(div)
     container.appendChild(searchInput)
-    appendChildren(div, [searchLabel, container, searchButton])
+    appendChildren(hook, [searchLabel, container, searchButton])
 }
