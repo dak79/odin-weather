@@ -1,6 +1,10 @@
+import { appendChildren, setAttributes } from './helpers.js'
+
 export function displayForm() {
     const hook = document.querySelector('#hook')
-    const form = document.createElement('form')
+    const div = document.createElement('div')
+    const container = document.createElement('div')
+    container.setAttribute('id', 'search-container')
 
     const searchLabel = document.createElement('label')
     searchLabel.setAttribute('for', 'searchLocation')
@@ -20,18 +24,7 @@ export function displayForm() {
     })
     searchButton.textContent = 'Search'
 
-    hook.appendChild(form)
-    appendChildren(form, [searchLabel, searchInput, searchButton])
-}
-
-function appendChildren(parent, children) {
-    children.map((child) => {
-        parent.appendChild(child)
-    })
-}
-
-function setAttributes(element, attrs) {
-    for (const [key, value] of Object.entries(attrs)) {
-        element.setAttribute(`${key}`, `${value}`)
-    }
+    hook.appendChild(div)
+    container.appendChild(searchInput)
+    appendChildren(div, [searchLabel, container, searchButton])
 }
