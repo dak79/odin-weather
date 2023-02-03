@@ -1,6 +1,7 @@
 import { displayForm } from './formUi.js'
 import { appendChildren, setAttributes } from '../helpers.js'
 import { switchUnits } from './switchUnitsUi.js'
+import { displayWeather } from './weatherDataUi.js'
 
 /**
  * Render DOM
@@ -30,4 +31,5 @@ export function renderPage() {
 
     displayForm(sectionSearch)
     switchUnits(sectionSearch)
+    displayWeather(sectionMain)
 }

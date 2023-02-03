@@ -1,5 +1,4 @@
-export function toggleUnits () {
-  const input = document.querySelector('#switch-input')
-console.log(input)
-
+export function toggleUnits() {
+    console.log('Changed')
+    //TODO: implement change from C to F
 }

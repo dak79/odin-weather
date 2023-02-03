@@ -1,7 +1,8 @@
 import { searchWeather } from './form.js'
-
+import { toggleUnits } from './switchUnits.js'
 export function addListeners() {
     formListener()
+    toggleListener()
 }
 
 function formListener() {
@@ -15,4 +16,9 @@ function formListener() {
 
     const btn = document.querySelector('#btn-search')
     btn.addEventListener('click', searchWeather)
+}
+
+function toggleListener() {
+    const input = document.querySelector('#switch-input')
+    input.addEventListener('change', toggleUnits)
 }

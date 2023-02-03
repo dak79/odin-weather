@@ -31,6 +31,13 @@ export async function weatherData(location, units) {
     return locationsWeather
 }
 
+export async function weatherIcon(code) {
+    const response = await fetch(`http://openweathermap.org/img/wn/${code}.png`)
+    const icon = await response.blob()
+    const iconURL = URL.createObjectURL(icon)
+    return iconURL
+}
+
 /**
  * Query OpenWether API for all data available about a location.
  * @param {String} location - city.
@@ -56,7 +63,7 @@ async function getWeather(location, units) {
  * @param {String} location - City name.
  * @returns {Object}
  */
-export async function getCoord(location) {
+async function getCoord(location) {
     const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=de1ef2a4611bd0429a6286b361ac72cf`
     )
