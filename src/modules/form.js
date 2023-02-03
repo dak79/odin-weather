@@ -1,5 +1,5 @@
 import { weatherData } from './weather.js'
-import { selectLocation } from './selectLocationUi.js'
+import { selectLocation } from './ui/selectLocationUi.js'
 
 export function formListener() {
     const input = document.querySelector('#searchLocation')

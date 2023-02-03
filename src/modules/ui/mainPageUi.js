@@ -1,5 +1,5 @@
 import { displayForm } from './formUi.js'
-import { appendChildren, setAttributes } from './helpers.js'
+import { appendChildren, setAttributes } from '../helpers.js'
 
 /**
  * Render DOM

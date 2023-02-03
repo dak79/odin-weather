@@ -1,5 +1,5 @@
-import { setAttributes } from './helpers.js'
-import { chooseLocation } from './selectLocation.js'
+import { setAttributes } from '../helpers.js'
+import { chooseLocation } from '../selectLocation.js'
 
 /**
  * Create a list of availble location with search results

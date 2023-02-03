@@ -1,4 +1,4 @@
-import { appendChildren, setAttributes } from './helpers.js'
+import { appendChildren, setAttributes } from '../helpers.js'
 
 export function displayForm(hook) {
     const searchArea = document.createElement('div')
