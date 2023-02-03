@@ -19,7 +19,7 @@ async function searchWeather() {
     const container = document.querySelector('#search-container')
     const data = await weatherData(input.value, 'metric')
     console.log(data)
-    selectLocation(container, input, data)
+    selectLocation(container, data)
 
     return data
 }

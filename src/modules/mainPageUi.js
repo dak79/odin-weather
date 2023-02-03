@@ -1,6 +1,9 @@
 import { displayForm } from './formUi.js'
 import { appendChildren, setAttributes } from './helpers.js'
 
+/**
+ * Render DOM
+ */
 export function renderPage() {
     const hook = document.querySelector('#hook')
 

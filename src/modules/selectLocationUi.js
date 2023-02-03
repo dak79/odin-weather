@@ -1,7 +1,12 @@
 import { setAttributes } from './helpers.js'
 import { chooseLocation } from './selectLocation.js'
 
-export function selectLocation(container, input, locations) {
+/**
+ * Create a list of availble location with search results
+ * @param {Node} container
+ * @param {Array} locations
+ */
+export function selectLocation(container, locations) {
     const previousSearch = document.querySelector(
         '#searchLocation + #select-location'
     )

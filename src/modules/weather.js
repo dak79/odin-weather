@@ -11,6 +11,7 @@ export async function weatherData(location, units) {
     const allData = await safeGetWeather(location, units)
     const locationsWeather = []
     allData.map((data) => {
+        /* eslint-disable */
         const {
             base,
             clouds,
@@ -22,6 +23,8 @@ export async function weatherData(location, units) {
             visibility,
             ...cityWeather
         } = data
+        /* eslint-enable */
+
         locationsWeather.push(cityWeather)
     })
 
