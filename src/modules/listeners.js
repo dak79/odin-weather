@@ -1,5 +1,6 @@
 import { searchWeather } from './form.js'
 import { toggleUnits } from './switchUnits.js'
+
 export function addListeners() {
     formListener()
     toggleListener()

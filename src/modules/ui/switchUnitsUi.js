@@ -1,5 +1,9 @@
 import { appendChildren, setAttributes } from '../helpers.js'
 
+/**
+ * Render units switch
+ * @param {Node} hook
+ */
 export function switchUnits(hook) {
     const unitsArea = document.createElement('div')
     unitsArea.setAttribute('id', 'units-area')

@@ -1,5 +1,9 @@
 import { appendChildren } from '../helpers.js'
 
+/**
+ * Render weather information on page
+ * @param {Node} hook
+ */
 export function displayWeather(hook) {
     const titleContainer = document.createElement('div')
     titleContainer.id = 'title-container'

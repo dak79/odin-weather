@@ -31,6 +31,11 @@ export async function weatherData(location, units) {
     return locationsWeather
 }
 
+/**
+ * Get the icon for the weather
+ * @param {String} code
+ * @returns {String} icon URL
+ */
 export async function weatherIcon(code) {
     const response = await fetch(`http://openweathermap.org/img/wn/${code}.png`)
     const icon = await response.blob()

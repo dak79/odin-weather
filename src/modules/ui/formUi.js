@@ -1,5 +1,9 @@
 import { appendChildren, setAttributes } from '../helpers.js'
 
+/**
+ * Render form
+ * @param {Node} hook
+ */
 export function displayForm(hook) {
     const searchArea = document.createElement('div')
     searchArea.setAttribute('id', 'search-area')
