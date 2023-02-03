@@ -1,5 +1,6 @@
 import { displayForm } from './formUi.js'
 import { appendChildren, setAttributes } from '../helpers.js'
+import { switchUnits } from './switchUnitsUi.js'
 
 /**
  * Render DOM
@@ -28,4 +29,5 @@ export function renderPage() {
     appendChildren(hook, [sectionSearch, sectionMain, sectionForecast])
 
     displayForm(sectionSearch)
+    switchUnits(sectionSearch)
 }
