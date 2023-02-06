@@ -15,7 +15,6 @@ export async function weatherData(location, units) {
         const {
             base,
             clouds,
-            coord,
             cod,
             dt,
             id,
@@ -41,6 +40,17 @@ export async function weatherIcon(code) {
     const icon = await response.blob()
     const iconURL = URL.createObjectURL(icon)
     return iconURL
+}
+
+export async function getFiveDaysForecast(location) {
+    console.log(location)
+    const response = await fetch(
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${location.coord.lat}&lon=${location.coord.lon}&appid=de1ef2a4611bd0429a6286b361ac72cf`
+    )
+    const forecast = await response.json()
+
+    console.log(forecast)
+    return forecast
 }
 
 /**

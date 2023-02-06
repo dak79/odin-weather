@@ -6,7 +6,6 @@ import { weatherIcon } from './weather.js'
  * @param {Object} location
  */
 export async function weatherData(location) {
-    console.log(location)
     const city = document.querySelector('#city-name')
     city.textContent = `${location.name} (${location.sys.country})`
 
