@@ -1,5 +1,7 @@
+import { errorHandler } from '../errorHandler.js'
 import { setAttributes } from '../helpers.js'
 import { chooseLocation } from '../selectLocation.js'
+import { weatherIcon } from '../weather.js'
 
 /**
  * Create a list of availble location with search results
@@ -20,10 +22,23 @@ export function selectLocation(container, locations) {
         id: 'select-location'
     })
 
-    locations.map((location, index) => {
+    locations.map(async (location, index) => {
         const li = document.createElement('li')
         li.setAttribute('data-index', index)
-        li.textContent = `${location.name}(${location.sys.country}) ${location.weather[0].icon} ${location.weather[0].main} - max: ${location.main.temp_max} min: ${location.main.temp_min} `
+        const safeWeatherIcon = errorHandler(weatherIcon)
+        const iconSrc = await safeWeatherIcon(`${location.weather[0].icon}`)
+        li.innerHTML = `<span>${location.name}(${location.sys.country})</span> 
+                        <img src='${iconSrc}' alt='icon:${
+            location.weather[0].main
+        }' />
+                        <span>${location.weather[0].main}</span> - 
+                        <span>max: ${Math.round(
+                            location.main.temp_max
+                        )}\u00B0C</span> 
+                        <span>min: ${Math.round(
+                            location.main.temp_min
+                        )}\u00B0C</span>`
+
         ul.appendChild(li)
         li.addEventListener('click', (event) =>
             chooseLocation(event, locations)

@@ -1,5 +1,5 @@
-import { displayForm } from './formUi.js'
 import { appendChildren, setAttributes } from '../helpers.js'
+import { displayForm } from './formUi.js'
 import { switchUnits } from './switchUnitsUi.js'
 import { displayWeather } from './weatherDataUi.js'
 

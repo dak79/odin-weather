@@ -42,14 +42,15 @@ export async function weatherIcon(code) {
     return iconURL
 }
 
-export async function getFiveDaysForecast(location) {
-    console.log(location)
+export async function getFiveDaysForecast(location, units) {
+  if (!units) {
+    units = 'metric'
+  }
     const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?lat=${location.coord.lat}&lon=${location.coord.lon}&appid=de1ef2a4611bd0429a6286b361ac72cf`
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${location.coord.lat}&lon=${location.coord.lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
     )
     const forecast = await response.json()
 
-    console.log(forecast)
     return forecast
 }
 
