@@ -1,7 +1,8 @@
+import { firstLocation } from '../fistLocation.js'
 import { appendChildren, setAttributes } from '../helpers.js'
-import { displayForm } from './formUi.js'
-import { switchUnits } from './switchUnitsUi.js'
-import { displayWeather } from './weatherDataUi.js'
+import { renderForm } from './formUi.js'
+import { renderSwitchUnits } from './switchUnitsUi.js'
+import { renderWeather } from './weatherDataUi.js'
 
 /**
  * Render DOM
@@ -29,7 +30,10 @@ export function renderPage() {
 
     appendChildren(hook, [sectionSearch, sectionMain, sectionForecast])
 
-    displayForm(sectionSearch)
-    switchUnits(sectionSearch)
-    displayWeather(sectionMain)
+    renderForm(sectionSearch)
+    renderSwitchUnits(sectionSearch)
+    renderWeather(sectionMain)
+  firstLocation()
+  
+  
 }
