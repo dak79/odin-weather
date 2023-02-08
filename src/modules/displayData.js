@@ -1,5 +1,5 @@
 import { errorHandler } from './errorHandler.js'
-import { weatherIcon } from './weather.js'
+import { weatherIcon, unit } from './weather.js'
 import { appendChildren } from './helpers.js'
 
 /**
@@ -16,7 +16,9 @@ export async function displayWeatherData(location) {
     img.src = iconSrc
 
     const temperature = document.querySelector('#weather-temp')
-    temperature.textContent = `${Math.round(location.main.temp)} \u00B0C`
+    temperature.textContent = `${Math.round(location.main.temp)} \u00B0${
+        unit.unit === 'metric' ? 'C' : 'F'
+    }`
 
     const mainWeatherText = document.querySelector('#short-description')
     mainWeatherText.textContent = `${location.weather[0].main}`
@@ -28,13 +30,17 @@ export async function displayWeatherData(location) {
         locationDescription.slice(1)
     description.textContent = `${capitalizeDescription}. Temperature feels like ${Math.round(
         location.main.feels_like
-    )} \u00B0C`
+    )} \u00B0${unit.unit === 'metric' ? 'C' : 'F'}`
 
     const maxTemp = document.querySelector('#max-temp')
-    maxTemp.textContent = `Max: ${Math.round(location.main.temp_max)} \u00B0C`
+    maxTemp.textContent = `Max: ${Math.round(location.main.temp_max)} \u00B0${
+        unit.unit === 'metric' ? 'C' : 'F'
+    }`
 
     const minTemp = document.querySelector('#min-temp')
-    minTemp.textContent = `Min: ${Math.round(location.main.temp_min)} \u00B0C`
+    minTemp.textContent = `Min: ${Math.round(location.main.temp_min)} \u00B0${
+        unit.unit === 'metric' ? 'C' : 'F'
+    }`
 
     const humidity = document.querySelector('#humidity')
     humidity.textContent = `Humidity: ${location.main.humidity}%`
@@ -43,13 +49,19 @@ export async function displayWeatherData(location) {
     pressure.textContent = `Pressure: ${location.main.pressure} Bar`
 
     const windSpeed = document.querySelector('#wind-speed')
-    windSpeed.textContent = `Wind Speed: ${location.wind.speed} Km/h`
+    windSpeed.textContent = `Wind Speed: ${location.wind.speed} ${
+        unit.unit === 'metric' ? 'm/s' : 'Mph'
+    }`
 }
 
 export function displayForecast(data) {
     let d1 = new Date()
     const hook = document.querySelector('#forecast')
-    data.list.map(async day => {
+    if (document.querySelector('#forecast > div')) {
+        Array.from(hook.children).map((child) => child.remove())
+    }
+
+    data.list.map(async (day) => {
         let d2 = new Date(day.dt * 1000)
 
         if (d1.getDay() === d2.getDay()) {
@@ -84,9 +96,11 @@ export function displayForecast(data) {
 
             const temp = document.createElement('span')
             temp.id = `temp-${d2.getDay()}-${d2.getHours()}`
-            temp.textContent = `${Math.round(
-                day.main.temp_max
-            )} \u00B0C / ${Math.round(day.main.temp_min)} \u00B0C`
+            temp.textContent = `${Math.round(day.main.temp_max)} \u00B0${
+                unit.unit === 'metric' ? 'C' : 'F'
+            } / ${Math.round(day.main.temp_min)} \u00B0${
+                unit.unit === 'metric' ? 'C' : 'F'
+            }`
 
             const safeWeatherIcon = errorHandler(weatherIcon)
             const iconSrc = await safeWeatherIcon(day.weather[0].icon)

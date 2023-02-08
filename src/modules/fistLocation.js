@@ -1,5 +1,5 @@
 import { errorHandler } from './errorHandler.js'
-import { getCity, getFiveDaysForecast, weatherData } from './weather.js'
+import { getCity, getFiveDaysForecast, weatherData, unit } from './weather.js'
 import { displayWeatherData, displayForecast } from './displayData.js'
 
 export async function firstLocation() {
@@ -12,7 +12,8 @@ export async function firstLocation() {
             async (position) => {
                 getFirstPageWeather(
                     position.coords.latitude,
-                    position.coords.longitude
+                    position.coords.longitude,
+                    unit.unit
                 )
             },
 
@@ -24,18 +25,21 @@ export async function firstLocation() {
             }
         )
     } else {
-        getFirstPageWeather(44.4938203, 11.3426327)
+        getFirstPageWeather(44.4938203, 11.3426327, unit.unit)
     }
 }
 
-async function getFirstPageWeather(lat, lon) {
+async function getFirstPageWeather(lat, lon, units) {
+        unit.lat = lat 
+        unit.lon = lon 
     const safeGetCity = errorHandler(getCity)
     const city = await safeGetCity(lat, lon)
     const safeWeatherData = errorHandler(weatherData)
-    const data = await safeWeatherData(city[0].name, 'metric')
+
+    const data = await safeWeatherData(city[0].name, units)
     displayWeatherData(data[0])
 
     const safeGetFiveDaysForecast = errorHandler(getFiveDaysForecast)
-    const forecast = await safeGetFiveDaysForecast(data[0])
+    const forecast = await safeGetFiveDaysForecast(data[0], units)
     displayForecast(forecast)
 }

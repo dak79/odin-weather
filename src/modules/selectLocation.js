@@ -1,5 +1,5 @@
 import { errorHandler } from './errorHandler.js'
-import { getFiveDaysForecast } from './weather.js'
+import { getFiveDaysForecast, unit } from './weather.js'
 import { displayWeatherData, displayForecast } from './displayData.js'
 
 /**
@@ -7,13 +7,14 @@ import { displayWeatherData, displayForecast } from './displayData.js'
  * @param {Event} event
  * @param {Array} locations
  */
-export async function chooseLocation(event, locations) {
+export async function chooseLocation(event, locations, units) {
     const id = event.target.dataset.index
     const location = locations.at(parseInt(id))
+unit.lat = location.coord.lat
+  unit.lon = location.coord.lon
     displayWeatherData(location)
-    
   const safeGetFiveDaysForecast = errorHandler(getFiveDaysForecast)
-    const forecast = await safeGetFiveDaysForecast(location)
+    const forecast = await safeGetFiveDaysForecast(location, units)
     displayForecast(forecast)
 
     const ul = document.querySelector('#select-location')

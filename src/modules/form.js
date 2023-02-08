@@ -1,4 +1,4 @@
-import { weatherData } from './weather.js'
+import { weatherData, unit } from './weather.js'
 import { selectLocation } from './ui/selectLocationUi.js'
 
 /**
@@ -7,8 +7,8 @@ import { selectLocation } from './ui/selectLocationUi.js'
 export async function searchWeather() {
     const input = document.querySelector('#searchLocation')
     const container = document.querySelector('#search-container')
-    const data = await weatherData(input.value, 'metric')
-    selectLocation(container, data)
+    const data = await weatherData(input.value, unit.unit)
+    selectLocation(container, data, unit.unit)
 
     return data
 }

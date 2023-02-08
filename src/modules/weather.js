@@ -1,5 +1,7 @@
 import { errorHandler } from './errorHandler.js'
 
+export const unit = { lat: 0, lon: 0, unit: 'metric' }
+
 /**
  * Select from OpenWeather API response only useful weather data.
  * @param {String} location - city.
@@ -43,9 +45,6 @@ export async function weatherIcon(code) {
 }
 
 export async function getFiveDaysForecast(location, units) {
-    if (!units) {
-        units = 'metric'
-    }
     const response = await fetch(
         `http://api.openweathermap.org/data/2.5/forecast?lat=${location.coord.lat}&lon=${location.coord.lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
     )
@@ -89,8 +88,10 @@ async function getCoord(location) {
 }
 
 export async function getCity(lat, lon) {
-  const response = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=de1ef2a4611bd0429a6286b361ac72cf`)
-  const city = await response.json()
-   
-  return city
+    const response = await fetch(
+        `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=de1ef2a4611bd0429a6286b361ac72cf`
+    )
+    const city = await response.json()
+
+    return city
 }
