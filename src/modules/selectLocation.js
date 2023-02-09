@@ -6,14 +6,17 @@ import { displayWeatherData, displayForecast } from './displayData.js'
  * Choose Location between search results
  * @param {Event} event
  * @param {Array} locations
+ * @param {'metric'|'imperial'} units
  */
 export async function chooseLocation(event, locations, units) {
     const id = event.target.dataset.index
     const location = locations.at(parseInt(id))
-unit.lat = location.coord.lat
-  unit.lon = location.coord.lon
+
+    unit.lat = location.coord.lat
+    unit.lon = location.coord.lon
     displayWeatherData(location)
-  const safeGetFiveDaysForecast = errorHandler(getFiveDaysForecast)
+
+    const safeGetFiveDaysForecast = errorHandler(getFiveDaysForecast)
     const forecast = await safeGetFiveDaysForecast(location, units)
     displayForecast(forecast)
 

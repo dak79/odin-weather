@@ -2,6 +2,9 @@ import { errorHandler } from './errorHandler.js'
 import { getCity, getFiveDaysForecast, weatherData, unit } from './weather.js'
 import { displayWeatherData, displayForecast } from './displayData.js'
 
+/**
+ * Get geolocation from Geolocation API or display Bologna if not available
+ */
 export async function firstLocation() {
     const permission = await navigator.permissions.query({
         name: 'geolocation'
@@ -29,9 +32,15 @@ export async function firstLocation() {
     }
 }
 
+/**
+ * Display weather and forecast data after geolocation
+ * @param {Number} lat - latitude
+ * @param {Number} lon - longitude
+ * @param {'metric'|'imperial'} units
+ */
 async function getFirstPageWeather(lat, lon, units) {
-        unit.lat = lat 
-        unit.lon = lon 
+    unit.lat = lat
+    unit.lon = lon
     const safeGetCity = errorHandler(getCity)
     const city = await safeGetCity(lat, lon)
     const safeWeatherData = errorHandler(weatherData)

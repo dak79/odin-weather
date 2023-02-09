@@ -54,6 +54,11 @@ export async function displayWeatherData(location) {
     }`
 }
 
+/**
+ * Populate with forecast data
+ * @param {Object} data
+ *
+ */
 export function displayForecast(data) {
     let d1 = new Date()
     const hook = document.querySelector('#forecast')
@@ -118,6 +123,10 @@ export function displayForecast(data) {
     })
 }
 
+/**
+ * Convert day number in string
+ * @param {Number} n
+ */
 function convertDayNumber(n) {
     let day = ''
     switch (n) {

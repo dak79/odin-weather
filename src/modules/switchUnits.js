@@ -1,6 +1,10 @@
 import { displayForecast, displayWeatherData } from './displayData.js'
 import { errorHandler } from './errorHandler.js'
 import { updateWeather, updateForecast, unit } from './weather.js'
+
+/**
+ * Change from metric to imperial
+ */
 export function toggleUnits() {
     console.log('Changed')
     const box = document.querySelector('#switch-input')
@@ -17,6 +21,13 @@ export function toggleUnits() {
     }
 }
 
+/**
+ * Update data after changing units
+ * @param {Object} newData
+ * @property {Number} newData.lat - latitude
+ * @property {Number} newData.lon - longitude
+ * @property {'metric'|'imperial'} newData.unit
+ */
 async function updateData(newData) {
     const safeUpdateWeather = errorHandler(updateWeather)
     const weather = await safeUpdateWeather(
@@ -24,14 +35,13 @@ async function updateData(newData) {
         newData.lon,
         newData.unit
     )
-    console.log(weather)
     displayWeatherData(weather)
+
     const safeUpdateForecast = errorHandler(updateForecast)
     const forecast = await safeUpdateForecast(
         newData.lat,
         newData.lon,
         newData.unit
     )
-    console.log(forecast)
     displayForecast(forecast)
 }

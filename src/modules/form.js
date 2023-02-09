@@ -2,6 +2,7 @@ import { weatherData, unit } from './weather.js'
 import { selectLocation } from './ui/selectLocationUi.js'
 
 /**
+ * Search weather for input locations
  * @returns {Promise} data - Locations matchinng with search
  */
 export async function searchWeather() {

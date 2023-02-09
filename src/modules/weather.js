@@ -44,6 +44,11 @@ export async function weatherIcon(code) {
     return iconURL
 }
 
+/**
+ * Get 3-hours forecast for the next 5 days
+ * @param {Object} location
+ * @param {'metric'|'imperial'} units
+ */
 export async function getFiveDaysForecast(location, units) {
     const response = await fetch(
         `http://api.openweathermap.org/data/2.5/forecast?lat=${location.coord.lat}&lon=${location.coord.lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
@@ -53,6 +58,12 @@ export async function getFiveDaysForecast(location, units) {
     return forecast
 }
 
+/**
+ * Update forecast for a location
+ * @param {Number} lat
+ * @param {Number} lon
+ * @param {'metric'|'imperial'} units
+ */
 export async function updateForecast(lat, lon, units) {
     const response = await fetch(
         `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
@@ -61,6 +72,7 @@ export async function updateForecast(lat, lon, units) {
 
     return forecast
 }
+
 /**
  * Query OpenWether API for all data available about a location.
  * @param {String} location - city.
@@ -78,9 +90,15 @@ async function getWeather(location, units) {
         const weather = await response.json()
         locations.push(weather)
     }
-  return locations
+    return locations
 }
 
+/**
+ * Update weather for a location
+ * @param {Number} lat
+ * @param {Number} lon
+ * @param {'metric'|'imperial'} units
+ */
 export async function updateWeather(lat, lon, units) {
     const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
@@ -91,7 +109,7 @@ export async function updateWeather(lat, lon, units) {
 }
 
 /**
- * Query geolocation API for getting the coordinate for OpenWeather API request.
+ * Query OpenWeather geolocation API for getting the coordinate for OpenWeather API request.
  * @param {String} location - City name.
  * @returns {Object}
  */
@@ -104,6 +122,12 @@ async function getCoord(location) {
     return cityObj
 }
 
+/**
+ * Query OpenWeather geolocation API for getting the coordinate for OpenWeather API request.
+ * @param {Number} lat
+* @param {Number} lon
+ * @returns {Object}
+ */
 export async function getCity(lat, lon) {
     const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=de1ef2a4611bd0429a6286b361ac72cf`
