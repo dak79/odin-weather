@@ -33,7 +33,5 @@ export function renderPage() {
     renderForm(sectionSearch)
     renderSwitchUnits(sectionSearch)
     renderWeather(sectionMain)
-  firstLocation()
-  
-  
+    firstLocation()
 }

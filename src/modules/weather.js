@@ -53,6 +53,14 @@ export async function getFiveDaysForecast(location, units) {
     return forecast
 }
 
+export async function updateForecast(lat, lon, units) {
+    const response = await fetch(
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
+    )
+    const forecast = await response.json()
+
+    return forecast
+}
 /**
  * Query OpenWether API for all data available about a location.
  * @param {String} location - city.
@@ -70,7 +78,16 @@ async function getWeather(location, units) {
         const weather = await response.json()
         locations.push(weather)
     }
-    return locations
+  return locations
+}
+
+export async function updateWeather(lat, lon, units) {
+    const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
+    )
+    const weather = await response.json()
+
+    return weather
 }
 
 /**
