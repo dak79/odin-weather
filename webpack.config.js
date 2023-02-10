@@ -3,7 +3,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
 const isProduction = process.env.NODE_ENV == 'production'
 
 const stylesHandler = MiniCssExtractPlugin.loader
@@ -26,7 +25,6 @@ const config = {
         }),
 
         new MiniCssExtractPlugin()
-
         // Add your plugins here
         // Learn more about plugins from https://webpack.js.org/configuration/plugins/
     ],
@@ -41,8 +39,15 @@ const config = {
                 use: [stylesHandler, 'css-loader']
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+                test: /\.(svg|png|jpg|gif)$/i,
                 type: 'asset'
+            },
+            {
+                test: /\.(woff(2)?|eot|tff|otf)$/i,
+                type: 'asset',
+                generator: {
+                    filename: 'assets/fonts/[hash][ext][query]'
+                }
             }
 
             // Add your rules for custom modules here

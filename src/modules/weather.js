@@ -125,7 +125,7 @@ async function getCoord(location) {
 /**
  * Query OpenWeather geolocation API for getting the coordinate for OpenWeather API request.
  * @param {Number} lat
-* @param {Number} lon
+ * @param {Number} lon
  * @returns {Object}
  */
 export async function getCity(lat, lon) {

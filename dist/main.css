@@ -1,4 +1,26 @@
 /*!***********************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles/main.css ***!
   \***********************************************************************/
+/* CSS Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*CSS Fonts*/
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: normal;
+    src: url(assets/fonts/281179d375517d9c131b.woff) format('woff'),
+        url(assets/fonts/acb6629fe45c43ad5d8b.woff2)
+            format('woff2');
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
 
