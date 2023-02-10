@@ -5,8 +5,13 @@ import { appendChildren, setAttributes } from '../helpers.js'
  * @param {Node} hook
  */
 export function renderForm(hook) {
+    const glass = document.createElement('div')
+    glass.id = 'glass'
     const searchArea = document.createElement('div')
-    searchArea.setAttribute('id', 'search-area')
+    setAttributes(searchArea, {
+        id: 'search-area',
+        class: 'search-area'
+    })
 
     const container = document.createElement('div')
     container.setAttribute('id', 'search-container')
@@ -16,17 +21,19 @@ export function renderForm(hook) {
         id: 'searchLocation',
         type: 'text',
         name: 'searchLocation',
-        placeholder: 'Search city'
+        placeholder: 'City',
+        class: 'search-input'
     })
 
     const searchButton = document.createElement('button')
     setAttributes(searchButton, {
         id: 'btn-search',
-        type: 'button'
+        type: 'button',
+        class: 'btn'
     })
     searchButton.textContent = 'Search'
 
     container.appendChild(searchInput)
-    appendChildren(searchArea, [container, searchButton])
+    appendChildren(searchArea, [glass, container, searchButton])
     hook.appendChild(searchArea)
 }

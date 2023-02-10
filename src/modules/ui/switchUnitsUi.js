@@ -6,7 +6,10 @@ import { appendChildren, setAttributes } from '../helpers.js'
  */
 export function renderSwitchUnits(hook) {
     const unitsArea = document.createElement('div')
-    unitsArea.setAttribute('id', 'units-area')
+    setAttributes(unitsArea, {
+        id: 'units-area',
+        class: 'units-area'
+    })
 
     const toggleBtn = document.createElement('input')
     setAttributes(toggleBtn, {
@@ -16,20 +19,12 @@ export function renderSwitchUnits(hook) {
     })
 
     const labelToggle = document.createElement('label')
-    labelToggle.classList.add('switch')
-
-    const spanLabel = document.createElement('span')
-    setAttributes(spanLabel, {
-        class: 'switch-label',
-        'data-cel': 'C',
-        'data-far': 'F'
+    setAttributes(labelToggle, {
+        for: 'switch-input',
+        class: 'switch'
     })
 
-    const spanHandle = document.createElement('span')
-    spanHandle.classList.add('span-handle')
-
-    appendChildren(labelToggle, [toggleBtn, spanLabel, spanHandle])
-    unitsArea.appendChild(labelToggle)
+    appendChildren(unitsArea, [toggleBtn, labelToggle])
 
     hook.appendChild(unitsArea)
 }
