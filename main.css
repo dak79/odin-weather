@@ -10,7 +10,7 @@
     box-sizing: border-box;
 }
 
-/*CSS Fonts*/
+/* CSS Fonts*/
 @font-face {
     font-family: 'Montserrat';
     font-style: normal;
@@ -20,7 +20,161 @@
             format('woff2');
 }
 
+/* CSS Variable */
+:root {
+    /* Tailwind color palette: Orange */
+    --orange50: #fff7ed;
+    --orange100: #ffedd5;
+    --orange200: #fed7aa;
+    --orange300: #fdba74;
+    --orange400: #fb923c;
+    --orange500: #f97316;
+    --orange600: #ea580c;
+    --orange700: #c2410c;
+    --orange800: #9a3412;
+    --orange900: #7c2d12;
+}
+
+/* Main */
 body {
     font-family: 'Montserrat', sans-serif;
+    background-color: white;
+}
+
+main {
+    display: grid;
+    grid-template:
+        [row1-start] 'search search' 0.3fr [row1-end]
+        [row2-start] 'main forecast' 1.7fr [row2-end]
+        / 1.4fr 0.6fr;
+    gap: 2em;
+}
+
+/* Section search  */
+.section-search {
+    grid-area: search;
+    justify-self: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 90%;
+    width: 90%;
+    margin: 1em 0;
+    border-radius: 15px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(225, 225, 225, 0.3);
+    box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.09);
+}
+
+/* Search: Input and button */
+.search-area {
+    display: flex;
+    flex-direction: row;
+}
+
+input[type='text'],
+.btn {
+    padding: 0.7em 1.5em;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--orange50);
+    border: none;
+    border-radius: 15px;
+}
+
+input[type='text'] {
+    background-color: var(--orange500);
+}
+
+input[type='text']:focus {
+    background-color: var(--orange400);
+}
+
+input[type='text']::placeholder {
+    color: var(--orange50);
+}
+
+.btn {
+    margin-left: 2em;
+    background-color: var(--orange600);
+    box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.btn:active {
+    transform: translateY(3px);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Toggle metric/imperial */
+.units-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type='checkbox'] {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.switch {
+    display: block;
+    width: 10em;
+    height: 3em;
+    background-color: var(--orange200);
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.3);
+}
+
+.switch::after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: '\00B0 C - m/s';
+    font-weight: 700;
+    font-size: 0.7rem;
+    padding: 0.2em;
+    width: 4.7em;
+    height: 3em;
+    color: var(--orange50);
+    background-color: var(--orange600);
+    position: absolute;
+    border-radius: 100px;
+    top: 0.67em;
+    left: 0.5em;
+    transition: 0.5s;
+}
+
+.switch:hover {
+    background-color: var(--orange300);
+}
+
+input:checked + .switch::after {
+    left: calc(100% - 0.5em);
+    transform: translateX(-100%);
+    content: '\00B0 F - Mph';
+}
+
+/* Section main */
+.section-main {
+    border: 5px solid blue;
+    grid-area: main;
+}
+
+/* Section forecast */
+.section-forecast {
+    border: 5px solid red;
+    grid-area: forecast;
 }
 
