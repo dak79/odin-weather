@@ -6,12 +6,7 @@ import { updateWeather, updateForecast, unit } from './weather.js'
  * Change from metric to imperial
  */
 export function toggleUnits() {
-    console.log('Changed')
     const box = document.querySelector('#switch-input')
-
-    console.log(
-        `box: ${box} - box value: ${box.value} - box checked: ${box.checked}`
-    )
     if (box.checked) {
         unit.unit = 'imperial'
         updateData(unit)

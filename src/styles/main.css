@@ -79,11 +79,16 @@ input[type='text'],
     color: var(--orange50);
     border: none;
     border-radius: 15px;
+  outline-color: var(--orange600)
 }
 
 input[type='text'] {
     background-color: var(--orange500);
+  position: relative;
+  width: 100%;
+
 }
+
 
 input[type='text']:focus {
     background-color: var(--orange400);
@@ -107,6 +112,30 @@ input[type='text']::placeholder {
 .btn:active {
     transform: translateY(3px);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Locations list */
+.locations {
+  position: absolute;
+  z-index: 1;
+  list-style: none;
+  background-color: var(--orange50);
+  padding: 0.5em 1em;
+  border: 2px solid var(--orange600);
+  border-radius: 15px;
+  max-width: 30%;
+}
+
+li { 
+display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 5px;
+}
+
+li:hover {
+  background-color: var(--orange200);
 }
 
 /* Toggle metric/imperial */
@@ -166,6 +195,7 @@ input:checked + .switch::after {
 /* Section main */
 .section-main {
     grid-area: main;
+  z-index: -1;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -201,7 +231,6 @@ input:checked + .switch::after {
 .section-forecast {
     grid-area: forecast;
     height: 30%;
-
     width: 70%;
     justify-self: center;
     border-radius: 15px;
