@@ -1,6 +1,6 @@
 import { errorHandler } from './errorHandler.js'
 import { weatherIcon, unit } from './weather.js'
-import { appendChildren } from './helpers.js'
+import { appendChildren, setAttributes } from './helpers.js'
 
 /**
  * Populate page with weather data
@@ -73,13 +73,20 @@ export function displayForecast(data) {
             if (!document.querySelector(`#day-${d2.getDay()}`)) {
                 const dayWrapper = document.createElement('div')
                 dayWrapper.id = `day-${d1.getDay()}`
+                setAttributes(dayWrapper, {
+                    id: `day-${d1.getDay()}`,
+                    class: 'days'
+                })
                 hook.appendChild(dayWrapper)
             }
 
             const wrapper = document.querySelector(`#day-${d2.getDay()}`)
             if (!document.querySelector(`#d-${d2.getDay()}`)) {
                 const dayName = document.createElement('p')
-                dayName.id = `d-${d2.getDay()}`
+                setAttributes(dayName, {
+                    id: `d-${d2.getDay()}`,
+                    class: 'day-name'
+                })
                 dayName.textContent = `${convertDayNumber(d2.getDay())}`
                 wrapper.appendChild(dayName)
             }
@@ -92,15 +99,24 @@ export function displayForecast(data) {
             const hours = document.querySelector(`#hours-${d2.getDay()}`)
 
             const forecastHours = document.createElement('div')
-            forecastHours.id = `forecast-${d2.getDay()}-${d2.getHours()}`
+            setAttributes(forecastHours, {
+                id: `forecast-${d2.getDay()}-${d2.getHours()}`,
+                class: 'forecast-hours'
+            })
             hours.appendChild(forecastHours)
 
             const hour = document.createElement('span')
-            hour.id = `hour-${d2.getDay()}-${d2.getHours()}`
+            setAttributes(hour, {
+                id: `hour-${d2.getDay()}-${d2.getHours()}`,
+                class: 'forecast-data'
+            })
             hour.textContent = `${d2.getHours()}:00 `
 
             const temp = document.createElement('span')
-            temp.id = `temp-${d2.getDay()}-${d2.getHours()}`
+            setAttributes(temp, {
+                id: `temp-${d2.getDay()}-${d2.getHours()}`,
+                class: 'forecast-data'
+            })
             temp.textContent = `${Math.round(day.main.temp_max)} \u00B0${
                 unit.unit === 'metric' ? 'C' : 'F'
             } / ${Math.round(day.main.temp_min)} \u00B0${
@@ -110,10 +126,18 @@ export function displayForecast(data) {
             const safeWeatherIcon = errorHandler(weatherIcon)
             const iconSrc = await safeWeatherIcon(day.weather[0].icon)
             const icon = document.createElement('img')
-            icon.src = iconSrc
+            setAttributes(icon, {
+                src: iconSrc,
+                alt: 'weather icon',
+                class: 'forecast-data'
+            })
 
             const desc = document.createElement('span')
             desc.id = `desc-${d2.getDay()}-${d2.getHours()}`
+            setAttributes(desc, {
+                id: `desc-${d2.getDay()}-${d2.getHours()}`,
+                class: 'forecast-data'
+            })
             desc.textContent = `${day.weather[0].main}`
 
             appendChildren(forecastHours, [hour, temp, icon, desc])
@@ -131,25 +155,25 @@ function convertDayNumber(n) {
     let day = ''
     switch (n) {
         case 0:
-            day = 'Sunday'
+            day = 'Sun'
             break
         case 1:
-            day = 'Monday'
+            day = 'Mon'
             break
         case 2:
-            day = 'Tuesday'
+            day = 'Tue'
             break
         case 3:
-            day = 'Wednesday'
+            day = 'Wed'
             break
         case 4:
-            day = 'Thursday'
+            day = 'Thu'
             break
         case 5:
-            day = 'Friday'
+            day = 'Fri'
             break
         case 6:
-            day = 'Saturday'
+            day = 'Sat'
             break
     }
     return day

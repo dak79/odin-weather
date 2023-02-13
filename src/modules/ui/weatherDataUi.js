@@ -1,4 +1,4 @@
-import { appendChildren } from '../helpers.js'
+import { appendChildren, setAttributes } from '../helpers.js'
 
 /**
  * Render weather information on page
@@ -9,46 +9,46 @@ export function renderWeather(hook) {
     titleContainer.id = 'title-container'
 
     const city = document.createElement('h1')
-    city.id = 'city-name'
+    setAttributes(city, {
+        id: 'city-name',
+        class: 'city-name'
+    })
 
     const iconTemp = document.createElement('div')
-    iconTemp.id = 'icon-temp'
+    setAttributes(iconTemp, {
+        id: 'icon-temp',
+        class: 'icon-temp'
+    })
+
+    const temp = document.createElement('span')
+    setAttributes(temp, {
+        id: 'weather-temp',
+        class: 'main-weather-data-text'
+    })
 
     const icon = document.createElement('img')
     icon.id = 'weather-icon'
 
-    const temp = document.createElement('span')
-    temp.id = 'weather-temp'
+    const shortDesc = document.createElement('span')
+    setAttributes(shortDesc, {
+        id: 'short-description',
+        class: 'main-weather-data-text'
+    })
 
-    appendChildren(iconTemp, [icon, temp])
-
+    appendChildren(iconTemp, [temp, icon, shortDesc])
     appendChildren(titleContainer, [city, iconTemp])
 
-    const descriptionContainer = document.createElement('div')
-    descriptionContainer.id = 'description-container'
-
-    const shortDesc = document.createElement('p')
-    shortDesc.id = 'short-description'
+    const dataContainer = document.createElement('div')
+    dataContainer.id = 'data-container'
 
     const longDesc = document.createElement('p')
     longDesc.id = 'long-description'
-
-    const wrapperData = document.createElement('div')
-    wrapperData.id = 'wrapper-data'
-
-    const tempContainer = document.createElement('div')
-    tempContainer.id = 'temp-container'
 
     const maxTemp = document.createElement('p')
     maxTemp.id = 'max-temp'
 
     const minTemp = document.createElement('p')
     minTemp.id = 'min-temp'
-
-    appendChildren(tempContainer, [maxTemp, minTemp])
-
-    const huWiBaContainer = document.createElement('div')
-    huWiBaContainer.id = 'hu-wi-ba-container'
 
     const humidity = document.createElement('p')
     humidity.id = 'humidity'
@@ -59,8 +59,13 @@ export function renderWeather(hook) {
     const windSpeed = document.createElement('p')
     windSpeed.id = 'wind-speed'
 
-    appendChildren(huWiBaContainer, [humidity, pressure, windSpeed])
-    appendChildren(wrapperData, [tempContainer, huWiBaContainer])
-    appendChildren(descriptionContainer, [shortDesc, longDesc, wrapperData])
-    appendChildren(hook, [titleContainer, descriptionContainer])
+    appendChildren(dataContainer, [
+        longDesc,
+        maxTemp,
+        minTemp,
+        humidity,
+        pressure,
+        windSpeed
+    ])
+    appendChildren(hook, [titleContainer, dataContainer])
 }
