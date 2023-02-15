@@ -40,7 +40,10 @@ const config = {
             },
             {
                 test: /\.(svg|png|jpg|gif)$/i,
-                type: 'asset'
+                type: 'asset',
+                generator: {
+                    filename: 'assets/imgs/[hash][ext][query]'
+                }
             },
             {
                 test: /\.(woff(2)?|eot|tff|otf)$/i,

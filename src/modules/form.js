@@ -7,7 +7,7 @@ import { selectLocation } from './ui/selectLocationUi.js'
  */
 export async function searchWeather() {
     const input = document.querySelector('#searchLocation')
-    const container = document.querySelector('#search-container')
+    const container = document.querySelector('#search-area')
     if (input.value) {
         const data = await weatherData(input.value, unit.unit)
         selectLocation(container, data, unit.unit)

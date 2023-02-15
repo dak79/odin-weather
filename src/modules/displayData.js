@@ -1,6 +1,22 @@
 import { errorHandler } from './errorHandler.js'
 import { weatherIcon, unit } from './weather.js'
 import { appendChildren, setAttributes } from './helpers.js'
+import ash from '../assets/imgs/background/ash.jpg'
+import clear from '../assets/imgs/background/clear.jpg'
+import clouds from '../assets/imgs/background/clouds.jpg'
+import drizzle from '../assets/imgs/background/drizzle.jpg'
+import dust from '../assets/imgs/background/dust.jpg'
+import fog from '../assets/imgs/background/fog.jpg'
+import general from '../assets/imgs/background/general.jpg'
+import haze from '../assets/imgs/background/haze.jpg'
+import mist from '../assets/imgs/background/mist.jpg'
+import rain from '../assets/imgs/background/rain.jpg'
+import sand from '../assets/imgs/background/sand.jpg'
+import smoke from '../assets/imgs/background/smoke.jpg'
+import snow from '../assets/imgs/background/snow.jpg'
+import squall from '../assets/imgs/background/squall.jpg'
+import thunderstorm from '../assets/imgs/background/thunderstorm.jpg'
+import tornado from '../assets/imgs/background/tornado.jpg'
 
 /**
  * Populate page with weather data
@@ -52,6 +68,8 @@ export async function displayWeatherData(location) {
     windSpeed.textContent = `Wind Speed: ${location.wind.speed} ${
         unit.unit === 'metric' ? 'm/s' : 'Mph'
     }`
+
+    displayBackground(location.weather[0].main)
 }
 
 /**
@@ -177,4 +195,35 @@ function convertDayNumber(n) {
             break
     }
     return day
+}
+
+function displayBackground(weather) {
+    const imgUrls = {
+        ash,
+        clear,
+        clouds,
+        drizzle,
+        dust,
+        fog,
+        general,
+        haze,
+        mist,
+        rain,
+        sand,
+        smoke,
+        snow,
+        squall,
+        thunderstorm,
+        tornado
+    }
+
+    const body = document.querySelector('body')
+
+    if (weather.toString().toLowerCase() in imgUrls) {
+        body.style.backgroundImage = `url('${
+            imgUrls[weather.toString().toLowerCase()]
+        }')`
+    } else {
+        body.style.backgroundImage = `url('${imgUrls[general]}')`
+    }
 }

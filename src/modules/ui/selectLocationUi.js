@@ -11,7 +11,8 @@ import { weatherIcon } from '../weather.js'
 export function selectLocation(container, locations, units) {
     const previousSearch = document.querySelector(
         '#searchLocation + #select-location'
-    )
+  
+  )
     if (previousSearch) {
         previousSearch.remove()
     }
