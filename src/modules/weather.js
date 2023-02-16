@@ -40,7 +40,9 @@ export async function weatherData(location, units) {
  */
 export async function weatherIcon(code) {
     displayLoader()
-    const response = await fetch(`http://openweathermap.org/img/wn/${code}.png`)
+    const response = await fetch(
+        `https://openweathermap.org/img/wn/${code}.png`
+    )
     const icon = await response.blob()
     hideLoader()
     const iconURL = URL.createObjectURL(icon)
@@ -55,7 +57,7 @@ export async function weatherIcon(code) {
 export async function getFiveDaysForecast(location, units) {
     displayLoader()
     const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?lat=${location.coord.lat}&lon=${location.coord.lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${location.coord.lat}&lon=${location.coord.lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
     )
     const forecast = await response.json()
     hideLoader()
@@ -125,7 +127,7 @@ export async function updateWeather(lat, lon, units) {
 async function getCoord(location) {
     displayLoader()
     const response = await fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=de1ef2a4611bd0429a6286b361ac72cf`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=de1ef2a4611bd0429a6286b361ac72cf`
     )
     const cityObj = await response.json()
     hideLoader()
@@ -141,7 +143,7 @@ async function getCoord(location) {
 export async function getCity(lat, lon) {
     displayLoader()
     const response = await fetch(
-        `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=de1ef2a4611bd0429a6286b361ac72cf`
+        `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=de1ef2a4611bd0429a6286b361ac72cf`
     )
     const city = await response.json()
     hideLoader()
