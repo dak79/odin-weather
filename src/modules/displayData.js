@@ -197,6 +197,10 @@ function convertDayNumber(n) {
     return day
 }
 
+/**
+ * Display background images according to main weather conditions
+ * @param {String} weather - fetched from weather[0].main
+ */
 function displayBackground(weather) {
     const imgUrls = {
         ash,

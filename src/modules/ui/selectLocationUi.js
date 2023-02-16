@@ -11,8 +11,7 @@ import { weatherIcon } from '../weather.js'
 export function selectLocation(container, locations, units) {
     const previousSearch = document.querySelector(
         '#searchLocation + #select-location'
-  
-  )
+    )
     if (previousSearch) {
         previousSearch.remove()
     }
@@ -31,10 +30,12 @@ export function selectLocation(container, locations, units) {
                         <img src='${iconSrc}' alt='icon:${
             location.weather[0].main
         }' />
-                        <span>${location.weather[0].main}</span>                                  
-                        <span>${Math.round(
-                            location.main.temp
-                        )} \u00B0${units === 'metric' ? 'C' : 'F'}</span>`
+                        <span>${
+                            location.weather[0].main
+                        }</span>                                  
+                        <span>${Math.round(location.main.temp)} \u00B0${
+            units === 'metric' ? 'C' : 'F'
+        }</span>`
 
         ul.appendChild(li)
         li.addEventListener('click', (event) =>

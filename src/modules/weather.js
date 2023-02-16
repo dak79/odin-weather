@@ -1,4 +1,5 @@
 import { errorHandler } from './errorHandler.js'
+import { displayLoader, hideLoader } from './loader.js'
 
 export const unit = { lat: 0, lon: 0, unit: 'metric' }
 
@@ -38,8 +39,10 @@ export async function weatherData(location, units) {
  * @returns {String} icon URL
  */
 export async function weatherIcon(code) {
+    displayLoader()
     const response = await fetch(`http://openweathermap.org/img/wn/${code}.png`)
     const icon = await response.blob()
+    hideLoader()
     const iconURL = URL.createObjectURL(icon)
     return iconURL
 }
@@ -50,11 +53,12 @@ export async function weatherIcon(code) {
  * @param {'metric'|'imperial'} units
  */
 export async function getFiveDaysForecast(location, units) {
+    displayLoader()
     const response = await fetch(
         `http://api.openweathermap.org/data/2.5/forecast?lat=${location.coord.lat}&lon=${location.coord.lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
     )
     const forecast = await response.json()
-
+    hideLoader()
     return forecast
 }
 
@@ -65,11 +69,12 @@ export async function getFiveDaysForecast(location, units) {
  * @param {'metric'|'imperial'} units
  */
 export async function updateForecast(lat, lon, units) {
+    displayLoader()
     const response = await fetch(
         `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
     )
     const forecast = await response.json()
-
+    hideLoader()
     return forecast
 }
 
@@ -84,10 +89,13 @@ async function getWeather(location, units) {
     const cities = await safeGetCoord(location)
     const locations = []
     for (const city of cities) {
+        displayLoader()
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
         )
+
         const weather = await response.json()
+        hideLoader()
         locations.push(weather)
     }
     return locations
@@ -100,11 +108,12 @@ async function getWeather(location, units) {
  * @param {'metric'|'imperial'} units
  */
 export async function updateWeather(lat, lon, units) {
+    displayLoader()
     const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
     )
     const weather = await response.json()
-
+    hideLoader()
     return weather
 }
 
@@ -114,11 +123,12 @@ export async function updateWeather(lat, lon, units) {
  * @returns {Object}
  */
 async function getCoord(location) {
+    displayLoader()
     const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=de1ef2a4611bd0429a6286b361ac72cf`
     )
     const cityObj = await response.json()
-
+    hideLoader()
     return cityObj
 }
 
@@ -129,10 +139,11 @@ async function getCoord(location) {
  * @returns {Object}
  */
 export async function getCity(lat, lon) {
+    displayLoader()
     const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=de1ef2a4611bd0429a6286b361ac72cf`
     )
     const city = await response.json()
-
+    hideLoader()
     return city
 }
