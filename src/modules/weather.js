@@ -71,7 +71,7 @@ export async function getFiveDaysForecast(location, units) {
 export async function updateForecast(lat, lon, units) {
     displayLoader()
     const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=de1ef2a4611bd0429a6286b361ac72cf&units=${units}`
     )
     const forecast = await response.json()
     hideLoader()
