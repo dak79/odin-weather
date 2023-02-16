@@ -3,9 +3,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const isProduction = process.env.NODE_ENV == 'production'
-
 const stylesHandler = MiniCssExtractPlugin.loader
+const isProduction = process.env.NODE_ENV == 'production'
 
 const config = {
     entry: './src/index.js',
@@ -21,12 +20,11 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/index.html',
+            favicon: './src/assets/favicon/weather-favicon.svg'
         }),
 
         new MiniCssExtractPlugin()
-        // Add your plugins here
-        // Learn more about plugins from https://webpack.js.org/configuration/plugins/
     ],
     module: {
         rules: [
@@ -52,9 +50,6 @@ const config = {
                     filename: 'assets/fonts/[hash][ext][query]'
                 }
             }
-
-            // Add your rules for custom modules here
-            // Learn more about loaders from https://webpack.js.org/loaders/
         ]
     }
 }
