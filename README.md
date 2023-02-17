@@ -5,7 +5,7 @@ Weather
 
 ## Description
 This project is part of The Odin Project - Full Stack JavaScript Path. The main goals is to implement a mantainable web app, exploring promeses and API usage.
-
+Weather informations are provided by OpenWeather[https://openweathermap.org/].
 ## Tecnologies
 HTML
 CSS
